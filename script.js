@@ -22,6 +22,12 @@ function generatePassword() {
   var includeNumbers = confirm("Include numbers?");
   var includeSymbols = confirm("Include symbols?");
 
+  // A check to see if the user has selected at least one character type
+  if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSymbols) {
+    alert("You must select at least one character type.");
+    return "";
+  }
+
   // Check to include specific characters based on user selection
   var charSet = "";
   if (includeLowercase) {
