@@ -1,5 +1,8 @@
-// All possible characters for a random password
-var possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]\:;?><,./-=";
+// All possible characters used by the generator
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "0123456789";
+var symbols = "!@#$%^&*()_+~`|}{[]\:;?><,./-=";
 
 // Function to generate a random password
 function generatePassword() {
@@ -12,12 +15,33 @@ function generatePassword() {
     alert("Enter a password length between 8-128 characters.");
     return "";
   }
+
+  // Asks the user if they want to include specific characters in their password
+  var includeLowercase = confirm("Include lowercase letters?");
+  var includeUppercase = confirm("Include uppercase letters?");
+  var includeNumbers = confirm("Include numbers?");
+  var includeSymbols = confirm("Include symbols?");
+
+  // Check to include specific characters based on user selection
+  var charSet = "";
+  if (includeLowercase) {
+    charSet += lowerCase;
+  }
+  if (includeUppercase) {
+    charSet += upperCase;
+  }
+  if (includeNumbers) {
+    charSet += numbers;
+  }
+  if (includeSymbols) {
+    charSet += symbols;
+  }
   var password = "";
 
   // Generates password based on password length and randomizes characters
   for (var i = 0; i < passwordLength; i++) {
-    var randomIndex = Math.floor(Math.random() * possibleChars.length);
-    var randomChar = possibleChars[randomIndex];
+    var randomIndex = Math.floor(Math.random() * charSet.length);
+    var randomChar = charSet[randomIndex];
     password += randomChar;
   }
 
